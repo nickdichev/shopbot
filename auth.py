@@ -1,9 +1,17 @@
+import json
 import praw
 import config
 import time
 import re
-from pprint import pprint
 from datetime import datetime, timedelta, date
+
+def json_serial(obj):
+	"""JSON serializer to encode datetime as strings"""
+
+	if isinstance(obj, (datetime, date)):
+		return obj.isoformat()
+	return obj
+	# raise TypeError ("Type %s not serializable" % type(obj))
 
 reddit = praw.Reddit(client_id = config.client_id,
                      client_secret = config.client_secret,
@@ -19,6 +27,8 @@ wants_re = re.compile('\[W\] ?(.*)') # [W] ?["0 or more not new line"]
 found_post_count = 0
 found_posts = []
 start_time = date.today() - timedelta(days=1)
+
+output_data = []
 
 for curr_subreddit in config.subreddit_dict:
 	subreddit = reddit.subreddit(curr_subreddit)
@@ -41,6 +51,7 @@ for curr_subreddit in config.subreddit_dict:
 	    post_info = {
 		'author' : submission.author.name,
 		'date' : datetime.fromtimestamp(submission.created),
+		'title' : submission.title,
 		'body' : submission.selftext,
 		'location' : location,
 		'has' : has,
@@ -53,12 +64,20 @@ for curr_subreddit in config.subreddit_dict:
 
 	wanted_items = config.subreddit_dict[curr_subreddit]["wanted_items"]
 	owned_items = config.subreddit_dict[curr_subreddit]["owned_items"]
+	
+	subreddit_output_data = { 
+		curr_subreddit : {
+			"wanted_items_post_list": [], 
+			"owned_items_post_list": []
+		} 
+	}
 
 	for post in found_posts:
 	    for wanted_item in wanted_items:
 		try :
 		    if wanted_item in post['has'] or wanted_item in post['body']:
 			print 'user {} has an item you want'.format(post['author'])
+			subreddit_output_data[curr_subreddit]["wanted_items_post_list"].append(post)
 		except:
 		    pass
 
@@ -66,5 +85,11 @@ for curr_subreddit in config.subreddit_dict:
 		try:
 		    if owned_item in post['wants']:
 			print 'user {} wants an item you have'.format(post['author'])
+			subreddit_output_data[curr_subreddit]["owned_items_post_list"].append(post)
 		except:
 		    pass
+
+	output_data.append(subreddit_output_data)
+
+with open("out.json", "w+") as outfile:
+	outfile.write(json.dumps(output_data, default=json_serial))
