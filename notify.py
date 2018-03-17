@@ -1,7 +1,6 @@
 import json
 import config
 from twilio.rest import Client
-from pprint import pprint as pp
 
 text_output = ''
 
@@ -18,8 +17,6 @@ with open('found.json', 'r') as infile:
 				text_output += '{}: /u/{} has an item you want! {}'.format(subreddit, post['author'], post['url'])
 			for post in owned_list:
 				text_output += '{}: /u/{} wants an item you have! {}'.format(subreddit, post['author'], post['url'])
-
-print(text_output)
 
 twilio_client = Client(config.account_sid, config.auth_token)
 
