@@ -27,13 +27,13 @@ Rename `config_template.py` to `config.py` and fill out the configuration fields
 #### PRAW
 You will use the `client_id` and `client_secret` from the PRAW setup section. The `username` and `password` configuration settings are the credentials for the Reddit account that you created the Reddit app with. Finally, set `user_agent` with the format `<platform>:<app ID>:<version string> (by /u/<Reddit username>)`. 
 
-#### Subreddit Shopping configuration
+#### Subreddit Shopping
 The `subreddit_dict` dictionary is used to where and what items to look for. Each item in the dictionary is a dictionary that contains two keys: `wanted_items` and `owned_items`. Each of these keys map to a list of strings that are the items you want to buy and the items you want to sell, respectively.  An example is provided in `config_template.py`. 
 
-#### Twilio configuration [optional]
+#### Twilio [optional]
 The two fields that come from your Twilio account are `account_sid` and `auth_token`. The `sms_sender` and `sms_recipient` fields expect the form '+<country code><area code><phone number>' eg. '+14561234567'
 
-#### Bit.ly configuration [optional]
+#### Bit.ly [optional]
 The only field is `bitly_token` which is optional, however, it is highly recommended. 
 
 ## Usage
