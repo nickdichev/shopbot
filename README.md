@@ -9,15 +9,16 @@ PRAW -- `pip install praw`
 
 Twilio -- `pip install twilio`
 
-## PRAW app setup
+## Setup
+#### PRAW
 Browse to your Reddit account's `preferences>apps` page. Scroll to the bottom and select "create another app..." .  Give your app a name and description and use `http://www.example.com/unused/redirect/uri` as your "redirect URI". Finally, select the type `script` for your app. Click "create app".
 
 Make note of your newly created app's `client_id` and `client_secret` as they will be needed to fill out the config file. 
 
-## Twilio setup [optional]
+#### Twilio [optional]
 Setup Twilio for programable SMS. You will need to purchase a phone number and add credits to your account. Find your `account_sid` and `auth_token` in the "Programmable SMS" section of your account. These fields will be required in the configuration file. If you do not want to use Twilio you must provide the `--pm` flag when you run the program. 
 
-## Bit.ly setup [optional]
+#### Bit.ly [optional]
 Create a bit.ly account and generate an access token. Navigate to your "Account Profile" and select "Generic Access Token". This is the token that you will put in the configuration file. Note that if you do not supply this field in the configuration file there will be long URLs in the output. 
 
 ## Configuration
