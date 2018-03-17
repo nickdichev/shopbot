@@ -14,7 +14,7 @@ def json_serial(obj):
 	return obj
 	# raise TypeError ("Type %s not serializable" % type(obj))
 
-def parse():
+def parse(reddit):
 	reddit = praw.Reddit(client_id = config.client_id,
 			     client_secret = config.client_secret,
 			     username = config.username,
