@@ -4,6 +4,7 @@ import config
 import time
 import re
 from datetime import datetime, timedelta, date
+from pprint import pprint as pp
 
 def json_serial(obj):
 	"""JSON serializer to encode datetime as strings"""
@@ -12,6 +13,9 @@ def json_serial(obj):
 		return obj.isoformat()
 	return obj
 	# raise TypeError ("Type %s not serializable" % type(obj))
+
+###################################################################
+
 
 reddit = praw.Reddit(client_id = config.client_id,
                      client_secret = config.client_secret,
@@ -65,6 +69,9 @@ for curr_subreddit in config.subreddit_dict:
 	wanted_items = config.subreddit_dict[curr_subreddit]["wanted_items"]
 	owned_items = config.subreddit_dict[curr_subreddit]["owned_items"]
 	
+	wanted_items = [_.lower() for _ in wanted_items]
+	owned_items = [_.lower() for _ in owned_items]
+
 	subreddit_output_data = { 
 		curr_subreddit : {
 			"wanted_items_post_list": [], 
@@ -77,6 +84,7 @@ for curr_subreddit in config.subreddit_dict:
 		try :
 		    if wanted_item in post['has'] or wanted_item in post['body']:
 			print 'user {} has an item you want'.format(post['author'])
+			print '{}'.format(post['has'])
 			subreddit_output_data[curr_subreddit]["wanted_items_post_list"].append(post)
 		except:
 		    pass
@@ -85,6 +93,7 @@ for curr_subreddit in config.subreddit_dict:
 		try:
 		    if owned_item in post['wants']:
 			print 'user {} wants an item you have'.format(post['author'])
+			print '{}'.format(post['wants'])
 			subreddit_output_data[curr_subreddit]["owned_items_post_list"].append(post)
 		except:
 		    pass
