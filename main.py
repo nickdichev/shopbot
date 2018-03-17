@@ -4,6 +4,7 @@ import notify
 import config
 import sys
 import praw
+import os
 
 def fail_and_exit(err_str):
 	print err_str
@@ -45,3 +46,4 @@ reddit = praw.Reddit(client_id = config.client_id,
 
 shopbot.parse(reddit)
 notify.notify(args.pm, reddit)
+os.remove('found.json')
