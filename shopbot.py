@@ -4,7 +4,7 @@ import config
 import time
 import re
 from datetime import datetime, timedelta, date
-from pprint import pprint as pp
+from bitly import get_short_url
 
 def json_serial(obj):
 	"""JSON serializer to encode datetime as strings"""
@@ -57,6 +57,7 @@ for curr_subreddit in config.subreddit_dict:
 		'date' : datetime.fromtimestamp(submission.created),
 		'title' : submission.title,
 		'body' : submission.selftext,
+		'url' : submission.url,
 		'location' : location,
 		'has' : has,
 		'wants': wants,
@@ -84,6 +85,7 @@ for curr_subreddit in config.subreddit_dict:
 		try :
 		    if wanted_item in post['has'] or wanted_item in post['body']:
 			print 'user {} has an item you want'.format(post['author'])
+			post['url'] = get_short_url(post['url'])
 			subreddit_output_data[curr_subreddit]["wanted_items_post_list"].append(post)
 		except:
 		    pass
@@ -92,11 +94,12 @@ for curr_subreddit in config.subreddit_dict:
 		try:
 		    if owned_item in post['wants']:
 			print 'user {} wants an item you have'.format(post['author'])
+			post['url'] = get_short_url(post['url'])
 			subreddit_output_data[curr_subreddit]["owned_items_post_list"].append(post)
 		except:
 		    pass
 
 	output_data.append(subreddit_output_data)
 
-with open("out.json", "w+") as outfile:
+with open("found.json", "w+") as outfile:
 	outfile.write(json.dumps(output_data, default=json_serial))
