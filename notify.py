@@ -1,4 +1,3 @@
-import json
 import config
 from twilio.rest import Client
 
@@ -18,10 +17,12 @@ with open('found.json', 'r') as infile:
 			for post in owned_list:
 				text_output += '{}: /u/{} wants an item you have! {}'.format(subreddit, post['author'], post['url'])
 
-twilio_client = Client(config.account_sid, config.auth_token)
-
-
-twilio_client.api.account.messages.create(
-	to    = config.sms_recipient,
-	from_ = config.sms_sender,
-	body  = text_output)
+def notify(should_pm):
+	if should_pm:
+		pass
+	else:
+		twilio_client = Client(config.account_sid, config.auth_token)
+		twilio_client.api.account.messages.create(
+			to    = config.sms_recipient,
+			from_ = config.sms_sender,
+			body  = text_output)
