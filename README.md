@@ -1,4 +1,4 @@
-# mk-helper
+# shopbot
 
 This project helps you find items you want to buy and sell online. In particular, it helps you parse "shopping" Reddit pages that use the [H][W][L] tags (have, want, location) in the post's title. The script utilizes the PRAW (Python Reddit API Wrapper) API to parse posts for items you want to buy or sell on subreddits that you choose. 
 
