@@ -84,7 +84,6 @@ for curr_subreddit in config.subreddit_dict:
 		try :
 		    if wanted_item in post['has'] or wanted_item in post['body']:
 			print 'user {} has an item you want'.format(post['author'])
-			print '{}'.format(post['has'])
 			subreddit_output_data[curr_subreddit]["wanted_items_post_list"].append(post)
 		except:
 		    pass
@@ -93,7 +92,6 @@ for curr_subreddit in config.subreddit_dict:
 		try:
 		    if owned_item in post['wants']:
 			print 'user {} wants an item you have'.format(post['author'])
-			print '{}'.format(post['wants'])
 			subreddit_output_data[curr_subreddit]["owned_items_post_list"].append(post)
 		except:
 		    pass

@@ -21,7 +21,8 @@ user_agent = ''
 #                                                                  |_|   |_|            |___/ 
 
 subreddit_dict = {
-	"mechmarket" : {"wanted_items" : ["jellykey"], "owned_items": ["majestouch"]}
+	"mechmarket" : {"wanted_items" : ["jellykey"], "owned_items": ["majestouch"]},
+	"hardwareswap" : {"wanted_items" : [], "owned_items" : ["oculus", "rift"]},
 }
 
 
