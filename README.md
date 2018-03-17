@@ -5,6 +5,7 @@ This project helps you find items you want to buy and sell online. In particular
 ## Dependencies 
 Python 2.7
 PRAW -- `pip install praw`
+Twilio -- `pip install twilio`
 
 ## PRAW app setup
 Browse to your Reddit account's `preferences>apps` page. Scroll to the bottom and select "create another app..." .  Give your app a name and description and use `http://www.example.com/unused/redirect/uri` as your "redirect URI". Finally, select the type `script` for your app. Click "create app".
