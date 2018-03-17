@@ -22,8 +22,10 @@ Setup Twilio for programable SMS. You will need to purchase a phone number and a
 Create a bit.ly account and generate an access token. Navigate to your "Account Profile" and select "Generic Access Token". This is the token that you will put in the configuration file. Note that if you do not supply this field in the configuration file there will be long URLs in the output. 
 
 ## Configuration
-#### Reddit PRAW configuration
-Rename `config_template.py` to `config.py` and fill out the "RedditPRAW" configuration section. You will use the `client_id` and `client_secret` from the above section. The `username` and `password` configuration settings are the credentials for the Reddit account that you created the Reddit app with. Finally, make a `user_agent` with the format ``<platform>:<app ID>:<version string> (by /u/<Reddit username>)``. 
+Rename `config_template.py` to `config.py` and fill out the configuration fields.
+
+#### PRAW
+You will use the `client_id` and `client_secret` from the PRAW setup section. The `username` and `password` configuration settings are the credentials for the Reddit account that you created the Reddit app with. Finally, set `user_agent` with the format `<platform>:<app ID>:<version string> (by /u/<Reddit username>)`. 
 
 #### Subreddit Shopping configuration
 The `subreddit_dict` dictionary is used to where and what items to look for. Each item in the dictionary is a dictionary that contains two keys: `wanted_items` and `owned_items`. Each of these keys map to a list of strings that are the items you want to buy and the items you want to sell, respectively.  An example is provided in `config_template.py`. 
