@@ -18,9 +18,9 @@ Rename `config_template.py` to `config.py` and fill out the "RedditPRAW" configu
 ### Subreddit Shopping configuration
 The `subreddit_dict` dictionary is used to where and what items to look for. Each item in the dictionary is a dictionary that contains two keys: `wanted_items` and `owned_items`. Each of these keys map to a list of strings that are the items you want to buy and the items you want to sell, respectively.  An example is provided in `config_template.py`. 
 
-### Running shopbot
+## Running shopbot
 Use `python shopbot.py` to run the script. The script currently prints the username and the associated Subreddit for your desired items. The script also creates an output file `out.json`. I plan to write an additional script that reads this file and will notify my via Twilio or Reddit private message. 
 
-### Deployment
+## Deployment
 Currently I run this script on my machine locally, however, I can easily see this script (and the associated notification script) running on a cheap VPS with a cron job. 
 
