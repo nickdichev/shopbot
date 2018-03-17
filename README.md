@@ -4,7 +4,9 @@ This project helps you find items you want to buy and sell online. In particular
 
 ## Dependencies 
 Python 2.7
+
 PRAW -- `pip install praw`
+
 Twilio -- `pip install twilio`
 
 ## PRAW app setup
