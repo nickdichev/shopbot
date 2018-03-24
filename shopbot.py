@@ -57,11 +57,12 @@ def parse(reddit):
 		    found_posts.append(post_info)
 		    found_post_count += 1
 
-		# print 'Processed {} submissions in {}'.format(found_post_count, curr_subreddit)
+		if config.DEBUG:
+			print 'Processed {} submissions in {}'.format(found_post_count, curr_subreddit)
 
 		wanted_items = config.subreddit_dict[curr_subreddit]["wanted_items"]
 		owned_items = config.subreddit_dict[curr_subreddit]["owned_items"]
-		
+
 		wanted_items = [_.lower() for _ in wanted_items]
 		owned_items = [_.lower() for _ in owned_items]
 
@@ -76,7 +77,8 @@ def parse(reddit):
 		    for wanted_item in wanted_items:
 			try :
 			    if wanted_item in post['has'] or wanted_item in post['body']:
-				# print 'user {} has an item you want'.format(post['author'])
+				if config.DEBUG:
+					print 'user {} has an item you want'.format(post['author'])
 				post['url'] = get_short_url(post['url'])
 				subreddit_output_data[curr_subreddit]["wanted_items_post_list"].append(post)
 			except:
@@ -85,7 +87,8 @@ def parse(reddit):
 		    for owned_item in owned_items:
 			try:
 			    if owned_item in post['wants']:
-				# print 'user {} wants an item you have'.format(post['author'])
+				if config.DEBUG:
+					print 'user {} wants an item you have'.format(post['author'])
 				post['url'] = get_short_url(post['url'])
 				subreddit_output_data[curr_subreddit]["owned_items_post_list"].append(post)
 			except:

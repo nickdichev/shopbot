@@ -23,6 +23,8 @@ subreddit_dict = {
 	"hardwareswap" : {"wanted_items" : [], "owned_items" : ["oculus", "rift"]},
 }
 
+DEBUG = 0
+
 #  _______       _ _ _       
 # |__   __|     (_) (_)      
 #    | |_      ___| |_  ___  
