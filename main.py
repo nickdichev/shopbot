@@ -46,6 +46,9 @@ reddit = praw.Reddit(client_id 	   = config.client_id,
 		     password 	   = config.password,
 		     user_agent    = config.user_agent)
 
-shopbot.parse(reddit)
-notify.notify(should_pm, reddit)
-os.remove('found.json')
+should_notify = shopbot.parse(reddit)
+if should_notify:
+	notify.notify(should_pm, reddit)
+	os.remove('found.json')
+else:
+	print "Did not find any items you are interested in buying or selling."

@@ -94,6 +94,17 @@ def parse(reddit):
 			    pass
 
 		output_data.append(subreddit_output_data)
-
+	
+	# verify the output data dict has something to notify about, return None to catch in main so we don't error out notifying
+	found_data = False
+	for subreddit_dict in output_data:
+		for subreddit in subreddit_dict:
+			if len(subreddit_dict[subreddit]['owned_items_post_list']) > 0 or len(subreddit_dict[subreddit]["wanted_items_post_list"]) > 0:
+				found_data = True
+	if not found_data:
+		return False
+		
 	with open("found.json", "w+") as outfile:
 		outfile.write(json.dumps(output_data, default=json_serial))
+
+	return True
