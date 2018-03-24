@@ -3,6 +3,7 @@ import praw
 import config
 import time
 import re
+import os
 from datetime import datetime, timedelta, date
 from bitly import get_short_url
 
@@ -22,13 +23,25 @@ def parse(reddit):
 
 	found_post_count = 0
 	found_posts = []
-	start_time = date.today() - timedelta(days=1)
+
+	# try to find a .last_run file to calculate a time delta, else use the config variable 
+	start_time = 0
+	if os.path.exists('shopbot.last_run'):
+		with open('shopbot.last_run', "r") as last_run:
+			start_time_unix = last_run.read()
+			if config.DEBUG:
+				print "using last_run {} as the start_time".format(start_time_unix)
+	else:
+		start_time = date.today() - timedelta(days=config.DEFAULT_TIME_DELTA_DAYS)
+		start_time_unix = datetime.strftime(start_time, '%s')
+		if config.DEBUG:
+			print "using config {} as the start time".format(start_time_unix)
 
 	output_data = []
 
 	for curr_subreddit in config.subreddit_dict:
 		subreddit = reddit.subreddit(curr_subreddit)
-		for submission in subreddit.submissions(start=datetime.strftime(start_time, '%s')):
+		for submission in subreddit.submissions(start=start_time_unix):
 		    title = submission.title
 
 		    location = has = wants = None

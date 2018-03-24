@@ -5,6 +5,7 @@ import config
 import sys
 import praw
 import os
+import time
 
 def fail_and_exit(err_str):
 	print err_str
@@ -52,3 +53,7 @@ if should_notify:
 	os.remove('found.json')
 else:
 	print "Did not find any items you are interested in buying or selling."
+
+with open('shopbot.last_run', 'w+') as last_run:
+	# cast to int to get rid of decimal part
+	last_run.write(str(int(time.time())))

@@ -23,6 +23,8 @@ subreddit_dict = {
 	"hardwareswap" : {"wanted_items" : [], "owned_items" : ["oculus", "rift"]},
 }
 
+# IF there is no .last_run file present parse the past DEFAULT_TIME_DELTA_DAYS of Reddit posts
+DEFAULT_TIME_DELTA_DAYS = 7
 DEBUG = 0
 
 #  _______       _ _ _       
