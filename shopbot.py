@@ -15,12 +15,6 @@ def json_serial(obj):
 	# raise TypeError ("Type %s not serializable" % type(obj))
 
 def parse(reddit):
-	reddit = praw.Reddit(client_id = config.client_id,
-			     client_secret = config.client_secret,
-			     username = config.username,
-			     password = config.password,
-			     user_agent = config.user_agent)
-
 	location_re = re.compile('\[(\S*)\]')
 	# need to find regex that does not grab trailing space here
 	has_re = re.compile('\[H\] ?([^\[]*)') # [H] ?["0 or more not [""]
