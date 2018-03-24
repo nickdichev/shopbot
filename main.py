@@ -1,5 +1,5 @@
-from shopbot import shopbot
-from notify import notify
+import shopbot
+import notify
 import argparse
 import config
 import sys
@@ -46,6 +46,6 @@ reddit = praw.Reddit(client_id 	   = config.client_id,
 		     password 	   = config.password,
 		     user_agent    = config.user_agent)
 
-parse(reddit)
-notify(should_pm, reddit)
+shopbot.parse(reddit)
+notify.notify(should_pm, reddit)
 os.remove('found.json')
