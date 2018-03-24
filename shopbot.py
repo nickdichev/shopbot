@@ -55,10 +55,9 @@ def parse(reddit):
 			'wants': wants,
 		    }
 		    found_posts.append(post_info)
-		    found_post_count += 1
 
 		if config.DEBUG:
-			print 'Processed {} submissions in {}'.format(found_post_count, curr_subreddit)
+			print 'Processed {} submissions in {}'.format(len(found_posts), curr_subreddit)
 
 		wanted_items = config.subreddit_dict[curr_subreddit]["wanted_items"]
 		owned_items = config.subreddit_dict[curr_subreddit]["owned_items"]
